@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 8px;
+}
+
+#shelf {
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.card {
+    background-color: beige;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
