@@ -49,7 +49,15 @@ function clearDisplay() {
     while (shelf.firstChild) {
       shelf.removeChild(shelf.firstChild);
     }
-  }
+}
+
+function showAddBookForm() {
+    addBookForm = document.getElementById("addBookForm");
+    addBookForm.style.display = "block";
+}
+
+const addBookButton = document.getElementById("addBookButton");
+addBookButton.addEventListener("click", showAddBookForm);
 
 const hobbit = new Book("The Hobbit", "J.R.R. Tolkien", 304, true);
 addBookToLibrary(hobbit);

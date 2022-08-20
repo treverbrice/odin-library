@@ -3,6 +3,17 @@ body {
     padding: 8px;
 }
 
+#addBookForm {
+    display: block;
+    position: fixed;
+    top: 10px;
+    left: calc(50vw - (300px / 2));
+    width: 300px;
+    height: 400px;
+    background-color: lightgrey;
+    padding: 16px;
+}
+
 #shelf {
     display: grid;
     grid-auto-rows: 1fr;
