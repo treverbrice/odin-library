@@ -51,14 +51,63 @@ function clearDisplay() {
     }
 }
 
+
+// event handlers
 function showAddBookForm() {
-    addBookForm = document.getElementById("addBookForm");
-    addBookForm.style.display = "block";
+    const addBookForm = document.getElementById("addBookForm");
+    addBookForm.style.display = "flex";
 }
 
+function closeAddBookForm() {
+    const addBookForm = document.getElementById("addBookForm");
+    addBookForm.style.display = "none";
+}
+
+function toggleRead() {
+    const toggleReadButton = document.getElementById("toggleRead");
+    const currentState = toggleReadButton.getAttribute("data-read");
+
+    if(currentState == "false") {
+        toggleReadButton.style.backgroundColor = "green";
+        toggleReadButton.innerText = "Has Been Read";
+        toggleReadButton.setAttribute("data-read", "true");
+    } else {
+        toggleReadButton.style.backgroundColor = "red";
+        toggleReadButton.innerText = "Not Read";
+        toggleReadButton.setAttribute("data-read", "false");
+    }
+}
+
+function submitAddBookForm() {
+    const addBookForm = document.getElementById("addBookForm");
+    const valid = addBookForm.checkValidity();
+    if(valid) {
+        //validate that book is new
+        const title = document.getElementById("title").value;
+        const author = document.getElementById("author").value;
+        const pageCount = document.getElementById("pageCount").value;
+        const read = document.getElementById("toggleRead").getAttribute("data-read");
+        const newBook = new Book(title, author, pageCount, read);
+        addBookToLibrary(newBook)
+    }
+}
+
+
+// attaching event listeners to all the buttons
 const addBookButton = document.getElementById("addBookButton");
 addBookButton.addEventListener("click", showAddBookForm);
 
+const closeFormButton = document.getElementById("closeAddBookForm");
+closeFormButton.addEventListener("click", closeAddBookForm);
+
+const toggleReadButton = document.getElementById("toggleRead");
+toggleReadButton.addEventListener("click", toggleRead);
+
+const submitButton = document.getElementById("submitButton");
+submitButton.addEventListener("click", submitAddBookForm);
+
+
+// some sample data to see the layout
 const hobbit = new Book("The Hobbit", "J.R.R. Tolkien", 304, true);
 addBookToLibrary(hobbit);
 

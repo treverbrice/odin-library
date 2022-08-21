@@ -4,14 +4,34 @@ body {
 }
 
 #addBookForm {
-    display: block;
+    display: flex;
+    flex-direction: column;
     position: fixed;
     top: 10px;
     left: calc(50vw - (300px / 2));
     width: 300px;
     height: 400px;
     background-color: lightgrey;
-    padding: 16px;
+    padding: 32px 16px 16px;
+    gap: 8px;
+}
+
+#closeAddBookForm {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border-radius: 50%;
+    border-width: 1px;
+    background-color: red;
+}
+
+#addBookForm > input,
+#addBookForm > .formButton {
+    height: 10%;
+}
+
+#toggleRead {
+    background-color: red;
 }
 
 #shelf {

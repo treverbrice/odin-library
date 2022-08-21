@@ -9,13 +9,13 @@
 
   <body>
     <button type="button" id="addBookButton">Add Book</button>
-    <form id="addBookForm">
+    <form id="addBookForm" action="#">
       <button type="button" id="closeAddBookForm">x</button>
       <input type="text" name="title" id="title" placeholder="Title" required>
       <input type="text" name="author" id="author" placeholder="Author" required>
       <input type="number" name="pageCount" id="pageCount" placeholder="Page Count" required>
-      <button type="button" id="toggleRead">Not Read</button>
-      <button type="submit">Submit</button>
+      <button type="button" id="toggleRead" class="formButton" data-read="false">Not Read</button>
+      <button type="button" id="submitButton" class="formButton">Submit</button>
     </form>
     <div id="shelf">
 
