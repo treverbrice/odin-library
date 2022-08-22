@@ -34,8 +34,15 @@ function updateDisplay() {
         author.innerText = myLibrary[i].author;
         const pageCount = document.createElement("div");
         pageCount.innerText = myLibrary[i].pageCount;
-        const read = document.createElement("div");
-        read.innerText = myLibrary[i].read;
+        const read = document.createElement("button");
+        read.setAttribute("data-read", myLibrary[i].read);
+        read.book = myLibrary[i];
+        if(read.getAttribute("data-read") == "true") {
+            read.classList.add("read");
+        } else {
+            read.classList.add("notRead");
+        }
+        read.addEventListener("click", existingToggleRead);
         newBook.appendChild(title);
         newBook.appendChild(author);
         newBook.appendChild(pageCount);
@@ -64,18 +71,22 @@ function closeAddBookForm() {
 }
 
 function toggleRead() {
-    const toggleReadButton = document.getElementById("toggleRead");
-    const currentState = toggleReadButton.getAttribute("data-read");
+    const currentState = this.getAttribute("data-read");
 
     if(currentState == "false") {
-        toggleReadButton.style.backgroundColor = "green";
-        toggleReadButton.innerText = "Has Been Read";
-        toggleReadButton.setAttribute("data-read", "true");
+        this.classList.add("read");
+        this.classList.remove("notRead");
+        this.setAttribute("data-read", "true");
     } else {
-        toggleReadButton.style.backgroundColor = "red";
-        toggleReadButton.innerText = "Not Read";
-        toggleReadButton.setAttribute("data-read", "false");
+        this.classList.remove("read");
+        this.classList.add("notRead");
+        this.setAttribute("data-read", "false");
     }
+}
+
+function existingToggleRead() {
+    toggleRead.call(this);
+    this.book.read = this.getAttribute('data-read');
 }
 
 function submitAddBookForm() {
@@ -89,6 +100,17 @@ function submitAddBookForm() {
         const read = document.getElementById("toggleRead").getAttribute("data-read");
         const newBook = new Book(title, author, pageCount, read);
         addBookToLibrary(newBook)
+        clearAddBookForm();
+        closeAddBookForm();
+    }
+}
+
+function clearAddBookForm() {
+    document.getElementById("title").value = "";
+    document.getElementById("author").value = "";
+    document.getElementById("pageCount").value = "";
+    if(document.getElementById("toggleRead").getAttribute("data-read") == "true") {
+        toggleRead.call(document.getElementById("toggleRead"));
     }
 }
 

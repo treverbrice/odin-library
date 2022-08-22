@@ -4,7 +4,7 @@ body {
 }
 
 #addBookForm {
-    display: flex;
+    display: none;
     flex-direction: column;
     position: fixed;
     top: 10px;
@@ -16,22 +16,34 @@ body {
     gap: 8px;
 }
 
+#addBookForm > * {
+    height: 10%;
+}
+
 #closeAddBookForm {
     position: absolute;
     right: 10px;
     top: 10px;
+    height: 19.5px;
     border-radius: 50%;
     border-width: 1px;
     background-color: red;
 }
 
-#addBookForm > input,
-#addBookForm > .formButton {
-    height: 10%;
+.notRead {
+    background-color: red;
 }
 
-#toggleRead {
-    background-color: red;
+.notRead::before {
+    content: "Not Read";
+}
+
+.read {
+    background-color: green;
+}
+
+.read::before {
+    content: "Has Been Read";
 }
 
 #shelf {
