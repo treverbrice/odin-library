@@ -46,6 +46,10 @@ body {
     content: "Has Been Read";
 }
 
+.deleteBookButton {
+    background-color: red;
+}
+
 #shelf {
     display: grid;
     grid-auto-rows: 1fr;

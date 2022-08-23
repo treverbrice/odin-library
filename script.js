@@ -43,10 +43,16 @@ function updateDisplay() {
             read.classList.add("notRead");
         }
         read.addEventListener("click", existingToggleRead);
+        const deleteBookButton = document.createElement("button");
+        deleteBookButton.innerText = "Delete";
+        deleteBookButton.classList.add("deleteBookButton");
+        deleteBookButton.book = myLibrary[i];
+        deleteBookButton.addEventListener("click", deleteBook)
         newBook.appendChild(title);
         newBook.appendChild(author);
         newBook.appendChild(pageCount);
         newBook.appendChild(read);
+        newBook.appendChild(deleteBookButton);
         shelf.appendChild(newBook);
     }
 }
@@ -87,6 +93,16 @@ function toggleRead() {
 function existingToggleRead() {
     toggleRead.call(this);
     this.book.read = this.getAttribute('data-read');
+}
+
+function deleteBook() {
+    for(let i = 0; i < myLibrary.length; i++) {
+        if(myLibrary[i].title == this.book.title) {
+            myLibrary.splice(i, 1);
+            i--;
+            updateDisplay();
+        }
+    }
 }
 
 function submitAddBookForm() {
