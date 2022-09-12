@@ -105,15 +105,27 @@ function deleteBook() {
     }
 }
 
+function checkForDups(newTitle) {
+    for(let i = 0; i < myLibrary.length; i++) {
+        if(myLibrary[i].title == newTitle) {
+            return(true);
+        }
+    }
+    return(false);
+}
+
 function submitAddBookForm() {
     const addBookForm = document.getElementById("addBookForm");
     const valid = addBookForm.checkValidity();
     if(valid) {
-        //validate that book is new
         const title = document.getElementById("title").value;
         const author = document.getElementById("author").value;
         const pageCount = document.getElementById("pageCount").value;
         const read = document.getElementById("toggleRead").getAttribute("data-read");
+        //validate that book is new
+        if(checkForDups(title)) {
+            return;
+        }
         const newBook = new Book(title, author, pageCount, read);
         addBookToLibrary(newBook)
         clearAddBookForm();
